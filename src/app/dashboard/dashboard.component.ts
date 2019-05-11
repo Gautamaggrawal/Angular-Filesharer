@@ -9,12 +9,21 @@ import { FileUploadService } from '../file-upload.service';
 })
 export class DashboardComponent implements OnInit {
   profileForm: FormGroup;
+  searchForm:FormGroup;
+  usererror:string;
   error: string;
+
 
   fileUpload = {status: '', message: '', filePath: ''};
   constructor(private fb: FormBuilder,private fileUploadService: FileUploadService) { }
+  isUserExists:string="hidden";
+  isfailDivVisible:string="hidden";
 
   ngOnInit() {
+    this.searchForm=this.fb.group({
+      searchusername:[''],
+    });
+
     this.profileForm = this.fb.group({
       name: [''],
       profile: ['']
@@ -26,6 +35,28 @@ export class DashboardComponent implements OnInit {
       this.profileForm.get('profile').setValue(file);
     }
   }
+  onSearch(){
+    var datatosend=this.searchForm.get('searchusername').value
+    console.log(datatosend);
+    this.fileUploadService.SearchUser(datatosend).subscribe(
+      res =>{    
+        debugger;    
+        if(res['status']=="True")    
+        {       
+            this.isUserExists="visible";
+            this.isfailDivVisible="hidden";  
+        }    
+        else{
+        this.isfailDivVisible="visible";
+
+        this.usererror=res['message'];    
+          console.log(res["message"]);    
+        }    
+      }
+    );
+  }
+
+
 
   onSubmit() {
     const formData = new FormData();

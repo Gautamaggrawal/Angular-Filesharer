@@ -2,15 +2,22 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpErrorResponse, HttpEventType} from '@angular/common/http';
 import { throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import {HttpHeaders} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileUploadService {
 
-  apiUrl = 'http://localhost/dev/angapi/api/upload';
+  apiUrl = 'http://localhost:8000/api/upload/';
 
   constructor(private http: HttpClient) { }
+
+  SearchUser(searchformdata){
+  console.log(searchformdata);  
+   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };  
+   return this.http.post<any>('http://localhost:8000/api/searchuser/',{"name":searchformdata},httpOptions);  
+  }
 
   upload(formData) {
     return this.http.post<any>(`${this.apiUrl}`, formData, {
@@ -39,6 +46,7 @@ export class FileUploadService {
 
   private fileUploadProgress(event) {
     const percentDone = Math.round(100 * event.loaded / event.total);
+    console.log(percentDone);
     return { status: 'progress', message: percentDone };
   }
 
