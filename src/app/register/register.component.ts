@@ -45,16 +45,16 @@ export class RegisterComponent implements OnInit {
     response=>    
     { 
       // this.data = true;
-    if(response.Status=="Success"){
+    if(response['Status']=="Success"){
       console.log("Form Submitted!");
       this.issuccessDivVisible= "visible";
       this.employeeForm.reset();      
-      this.message = response.Message;
+      this.message = response['Message'];
     }
     else{
       this.isfailDivVisible= "visible";
       console.log(this.isfailDivVisible)
-      this.message = response.Message;
+      this.message = response['Message'];
     }
     
           
