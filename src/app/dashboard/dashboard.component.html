@@ -11,7 +11,7 @@
 </div>
 <form [formGroup] = "searchForm" (ngSubmit)="onSearch()">
     <div class="input-group input-group-lg">
-    <input type="text" formControlName="searchusername" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm">
+    <input type="text" formControlName="searchusername" class="form-control" aria-label="Large" aria-describedby="inputGroup-sizing-sm" placeholder="SearchUser by Username...">
     <button type="submit" class="btn btn-success">Search</button>
   </div>
 </form>
@@ -39,10 +39,13 @@
           <button type="submit" class="btn btn-success">Upload</button>
         </div>
       </form>
-  <!--     <div *ngIf="fileUpload.status==='success'">
-        <img [src]="fileUpload.filePath" height="200px" />
+      
+      <div *ngIf="fileUpload.status==='success'">
+          <div class="alert alert-success">
+          <strong>File Uploaded Successfully</strong>
+          </div>
       </div>
-   -->    <p>{{ error }}</p>
+      <p>{{ error }}</p>
     </div>
   </div>
   </div>

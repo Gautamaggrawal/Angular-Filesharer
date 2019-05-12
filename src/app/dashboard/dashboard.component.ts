@@ -44,7 +44,9 @@ export class DashboardComponent implements OnInit {
         if(res['status']=="True")    
         {       
             this.isUserExists="visible";
-            this.isfailDivVisible="hidden";  
+            this.isfailDivVisible="hidden";
+            localStorage.setItem("user", res['data']);// Retrieve
+            localStorage.getItem("user");  
         }    
         else{
         this.isfailDivVisible="visible";
