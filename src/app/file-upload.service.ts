@@ -9,7 +9,7 @@ import {HttpHeaders} from '@angular/common/http';
 })
 export class FileUploadService {
 
-  apiUrl = 'http://localhost:8000/api/upload/';
+  apiUrl = 'https://fileexchangerbackend.herokuapp.com/api/upload/';
 
   constructor(private http: HttpClient) { }
 
@@ -21,7 +21,7 @@ export class FileUploadService {
     'Authorization': 'Bearer ' + access,
     'Content-Type': 'application/json' 
   }) };  
-   return this.http.get<any>('http://localhost:8000/api/Listfiles/',httpOptions);  
+   return this.http.get<any>('https://fileexchangerbackend.herokuapp.com/api/Listfiles/',httpOptions);  
   }
 
 
@@ -37,7 +37,7 @@ var access=localStorage.getItem('access')
     'Authorization': 'Bearer ' + access,
     'Content-Type': 'application/json' 
   }) };  
-   return this.http.post<any>('http://localhost:8000/api/searchuser/',{"name":searchformdata},httpOptions);  
+   return this.http.post<any>('https://fileexchangerbackend.herokuapp.com/api/searchuser/',{"name":searchformdata},httpOptions);  
   }
 
   upload(formData) {

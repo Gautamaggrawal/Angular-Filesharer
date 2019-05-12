@@ -12,7 +12,7 @@ export class LoginService {
   header : any;  
   constructor(private http : HttpClient) {   
   
-    this.Url = 'http://localhost:8000/api/Login/';  
+    this.Url = 'https://fileexchangerbackend.herokuapp.com/api/Login/';  
   
     const headerSettings: {[name: string]: string | string[]; } = {};  
     this.header = new HttpHeaders(headerSettings);  

@@ -3,9 +3,9 @@
     <div class="col-sm-10 btn btn-primary">  
         Welcome to DashBoard  
     </div>
-    <div class="col-sm-2 btn btn-primary">  
+    <button class="col-sm-2 btn btn-primary" (click)="logout()">  
         Logout  
-    </div>  
+    </button>  
   </div>  
 </div>
 <div class="container">
@@ -60,13 +60,13 @@
     </div>
     <div class="col-sm-6" >
       <h2>Received Files</h2> 
-  <div class="row">
-  <div class="col-4">
-    <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="/" role="tab" aria-controls="home" *ngFor="let policy of data" >{{policy.file}}</a>
-    </div>
-  </div>
-  </div>
+  <div class="list-group" *ngFor="let files of data">
+  <a href="https://fileexchangerbackend.herokuapp.com/media/{{files.file}}" download="{{files.file}}" class="list-group-item list-group-item-action">{{files.file}}</a>
+</div>
+
+
+
+
   </div>
 </div>
 </div>

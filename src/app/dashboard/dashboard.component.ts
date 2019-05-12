@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { FileUploadService } from '../file-upload.service';
+import { RouterModule, Routes } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +17,7 @@ export class DashboardComponent implements OnInit {
 
 
   fileUpload = {status: '', message: '', filePath: ''};
-  constructor(private fb: FormBuilder,private fileUploadService: FileUploadService) { }
+  constructor(private fb: FormBuilder,private fileUploadService: FileUploadService,private router:Router) { }
   isUserExists:string="hidden";
   isfailDivVisible:string="hidden";
   isLoadingResults = true;
@@ -31,6 +33,7 @@ export class DashboardComponent implements OnInit {
            this.isLoadingResults = true;
           }, err => {
             console.log(err);
+            this.router.navigate(['login'])
             this.isLoadingResults = false;
         });
 
@@ -55,6 +58,11 @@ export class DashboardComponent implements OnInit {
       this.profileForm.get('profile').setValue(file);
     }
   }
+    logout() {
+   localStorage.clear()
+   this.router.navigate(['login']) 
+  }
+
   onSearch(){
     var datatosend=this.searchForm.get('searchusername').value
     console.log(datatosend);
@@ -74,6 +82,10 @@ export class DashboardComponent implements OnInit {
         this.usererror=res['message'];    
           console.log(res["message"]);    
         }    
+      },
+      err =>{
+        console.log(err);
+        this.router.navigate(['login'])
       }
     );
   }
