@@ -19,14 +19,13 @@ export class LoginComponent {
     
     
   ngOnInit() {    
-    sessionStorage.removeItem('UserName');    
+    sessionStorage.removeItem('username');    
     sessionStorage.clear();    
   }    
   login(){    
     // debugger;    
     this.LoginService.Login(this.model).subscribe(    
-      data => {    
-        debugger;    
+      data => {        
         if(data.Status=="Success")    
         {       
           this.router.navigate(['Dasboard'])    
@@ -37,7 +36,7 @@ export class LoginComponent {
         }    
       },    
       error => {    
-        this.errorMessage = error.message;    
+        this.errorMessage = error.Message;    
       });    
   };    
  }

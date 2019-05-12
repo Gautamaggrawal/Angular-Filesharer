@@ -15,10 +15,10 @@ import { RouterModule, Routes } from '@angular/router';
 })    
 export class RegisterComponent implements OnInit {
   employeeForm: FormGroup;
-  UserName:FormControl;
-  LoginName: FormControl;
-  Password: FormControl;
-  confirmPassword:FormControl;
+  // UserName:FormControl;
+  // LoginName: FormControl;
+  // Password: FormControl;
+  // confirmPassword:FormControl;
   data = false;    
   UserForm: any;    
   message:string;    
@@ -28,9 +28,9 @@ export class RegisterComponent implements OnInit {
   
   ngOnInit() {
     this.employeeForm = this.formbulider.group({    
-      UserName: ['', [Validators.required]],    
-      LoginName: ['', [Validators.required]],    
-      Password: ['', [Validators.required,Validators.minLength(8)]],
+      username: ['', [Validators.required]],    
+      first_name: ['', [Validators.required]],    
+      password: ['', [Validators.required,Validators.minLength(8)]],
       confirmPassword:['', [Validators.required,Validators.minLength(8)]],    
     });    
   }    
@@ -43,22 +43,23 @@ export class RegisterComponent implements OnInit {
   {    
   this.loginService.CreateUser(register).subscribe(    
     response=>    
-    { 
+    {
+      console.log(response);
+
       // this.data = true;
     if(response['Status']=="Success"){
       console.log("Form Submitted!");
+      this.isfailDivVisible= "hidden";
       this.issuccessDivVisible= "visible";
       this.employeeForm.reset();      
       this.message = response['Message'];
-    }
-    else{
-      this.isfailDivVisible= "visible";
-      console.log(this.isfailDivVisible)
-      this.message = response['Message'];
-    }
-    
-          
-          
-    });    
+    }     
+    },
+    error=> {
+    console.log(error['error']['username'][0])     
+    this.isfailDivVisible= "visible";
+    console.log(this.isfailDivVisible)
+      this.message = error['error']['username'][0];}
+    );    
   }    
 }        
