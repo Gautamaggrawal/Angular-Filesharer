@@ -1,7 +1,10 @@
 <div>  
   <div class="row">  
-    <div class="col-sm-12 btn btn-primary">  
+    <div class="col-sm-10 btn btn-primary">  
         Welcome to DashBoard  
+    </div>
+    <div class="col-sm-2 btn btn-primary">  
+        Logout  
     </div>  
   </div>  
 </div>
@@ -17,7 +20,12 @@
 </form>
 <br>
 <br>
-    <div class="container" [style.visibility]="isUserExists">
+
+<div class="container-fluid">      
+  <div class="row">
+    <div class="col-sm-6" >
+      <h2>Upload File</h2>
+<div class="container" [style.visibility]="isUserExists">
   <div class="row">
     <div class="col-md-6">
       <div *ngIf="fileUpload.status==='error'">
@@ -49,5 +57,16 @@
     </div>
   </div>
   </div>
-
+    </div>
+    <div class="col-sm-6" >
+      <h2>Received Files</h2> 
+  <div class="row">
+  <div class="col-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="/" role="tab" aria-controls="home" *ngFor="let policy of data" >{{policy.file}}</a>
+    </div>
+  </div>
+  </div>
+  </div>
+</div>
 </div>

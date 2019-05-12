@@ -13,6 +13,23 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
 
+
+
+    getFileList(){
+   var access=localStorage.getItem('access')
+   const httpOptions = { headers: new HttpHeaders({
+    'Authorization': 'Bearer ' + access,
+    'Content-Type': 'application/json' 
+  }) };  
+   return this.http.get<any>('http://localhost:8000/api/Listfiles/',httpOptions);  
+  }
+
+
+
+
+
+
+
   SearchUser(searchformdata){
 var access=localStorage.getItem('access')
   console.log(searchformdata);

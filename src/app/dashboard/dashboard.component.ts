@@ -18,8 +18,28 @@ export class DashboardComponent implements OnInit {
   constructor(private fb: FormBuilder,private fileUploadService: FileUploadService) { }
   isUserExists:string="hidden";
   isfailDivVisible:string="hidden";
+  isLoadingResults = true;
+  data: any[] = [];
 
   ngOnInit() {
+
+      this.fileUploadService.getFileList().subscribe(
+        res => {
+          console.log("ayayayyyyyyyyyyyyyyy");
+          this.data = res['data'];
+          console.log(res['data']);
+           this.isLoadingResults = true;
+          }, err => {
+            console.log(err);
+            this.isLoadingResults = false;
+        });
+
+
+
+
+
+
+
     this.searchForm=this.fb.group({
       searchusername:[''],
     });
