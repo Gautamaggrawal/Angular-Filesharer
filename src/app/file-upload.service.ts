@@ -14,8 +14,12 @@ export class FileUploadService {
   constructor(private http: HttpClient) { }
 
   SearchUser(searchformdata){
-  console.log(searchformdata);  
-   const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };  
+  const access=localStorage.getItem('access')
+  console.log(searchformdata);
+   const httpOptions = { headers: new HttpHeaders({
+    'Authorization': 'Bearer ' + access,
+    'Content-Type': 'application/json' 
+  }) };  
    return this.http.post<any>('http://localhost:8000/api/searchuser/',{"name":searchformdata},httpOptions);  
   }
 

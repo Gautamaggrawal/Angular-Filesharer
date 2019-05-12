@@ -18,25 +18,30 @@ export class LoginComponent {
   constructor(private router:Router,private LoginService:LoginService) { }    
     
     
-  ngOnInit() {    
-    sessionStorage.removeItem('username');    
-    sessionStorage.clear();    
+  ngOnInit() {
+    // localStorage.removeItem('refresh');
+    // localStorage.removeItem('access');        
+    // localStorage.clear();    
   }    
   login(){    
     // debugger;    
     this.LoginService.Login(this.model).subscribe(    
-      data => {        
-        if(data.Status=="Success")    
-        {       
-          this.router.navigate(['Dasboard'])    
-          // debugger;    
+      data => {
+
+        console.log(data)
+                
+        if(data.access && data.refresh)    
+        {
+          localStorage.setItem('refresh', data.refresh);
+          localStorage.setItem('access', data.access);       
+          this.router.navigate(['Dasboard'])        
         }    
         else{    
           this.errorMessage = data.Message;    
         }    
       },    
       error => {    
-        this.errorMessage = error.Message;    
+        this.errorMessage = "Invalid credentials";    
       });    
   };    
  }
