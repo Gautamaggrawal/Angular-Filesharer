@@ -40,14 +40,14 @@ export class DashboardComponent implements OnInit {
     console.log(datatosend);
     this.fileUploadService.SearchUser(datatosend).subscribe(
       res =>{    
-        debugger;    
         if(res['status']=="True")    
         {       
             this.isUserExists="visible";
             this.isfailDivVisible="hidden";
-            localStorage.setItem("user", res['data']);// Retrieve
-            localStorage.getItem("user");  
+            localStorage.setItem("sendto",res["touser"]);
+            localStorage.setItem("sendby",res['fromuser']);  
         }    
+
         else{
         this.isfailDivVisible="visible";
 
@@ -62,10 +62,10 @@ export class DashboardComponent implements OnInit {
 
   onSubmit() {
     const formData = new FormData();
-    var sentto=localStorage.getItem('user');
     formData.append('name', this.profileForm.get('name').value);
     formData.append('profile', this.profileForm.get('profile').value);
-    formData.append('sentto',sentto);
+    formData.append('sendto', localStorage.getItem("sendto"));
+    formData.append('sendby', localStorage.getItem("sendby"));
 
     this.fileUploadService.upload(formData).subscribe(
       res =>this.fileUpload = res,

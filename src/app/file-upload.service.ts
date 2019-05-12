@@ -14,7 +14,7 @@ export class FileUploadService {
   constructor(private http: HttpClient) { }
 
   SearchUser(searchformdata){
-  const access=localStorage.getItem('access')
+var access=localStorage.getItem('access')
   console.log(searchformdata);
    const httpOptions = { headers: new HttpHeaders({
     'Authorization': 'Bearer ' + access,
