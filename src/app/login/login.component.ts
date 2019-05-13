@@ -22,9 +22,13 @@ export class LoginComponent {
     // localStorage.removeItem('refresh');
     // localStorage.removeItem('access');        
     // localStorage.clear();    
+  }
+
+  createaccount(){
+    this.router.navigate(['AddUser'])
   }    
   login(){    
-    // debugger;    
+    debugger;    
     this.LoginService.Login(this.model).subscribe(    
       data => {
 
