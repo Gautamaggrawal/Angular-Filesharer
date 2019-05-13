@@ -1,7 +1,7 @@
 <div class="container" style="padding-top:40px;">
 
   <div class="alert alert-success" [style.visibility]="issuccessDivVisible">
-  <strong>{{message}}</strong><a href="/login"> Go to login </a>
+  <strong>{{message}}</strong><button (click)="logincr()" class="btn btn-link px-0">Go to Login?</button>
 </div>
 <div class="alert alert-error" [style.visibility]="isfailDivVisible">
   <strong>Warning!</strong> {{message}}.
